@@ -176,7 +176,8 @@
                 namespace: my-presentation
               data:
                 a-param: "a param"
-                config-file.json: "{"fromConfigFile": true}"
+                another-slide.md: |-
+                ## A slide from a config map
               ```
             </textarea>
           </section>
@@ -193,7 +194,6 @@
                 name: presentation-secret
                 namespace: my-presentation
               ```
-
               <small>I recommend __not__ storing secrets in source control.</small>
             </textarea>
           </section>
