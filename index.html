@@ -1,81 +1,148 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
+  <head>
+    <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
     <title>Kubernetes Presentation</title>
 
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/reveal.css"/>
-    <link rel="stylesheet" href="css/theme/black.css"/>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/monokai.css"/>
+    <link rel="stylesheet" href="lib/css/monokai.css" />
 
     <!-- Printing and PDF exports -->
     <script>
-        var link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.type = "text/css";
-        link.href = window.location.search.match(/print-pdf/gi)
-            ? "css/print/pdf.css"
-            : "css/print/paper.css";
-        document.getElementsByTagName("head")[0].appendChild(link);
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
     </script>
-</head>
-<body>
-<div class="reveal">
-    <div class="slides">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
         <section><h1>Kubernetes</h1></section>
         <section>
-            <section data-markdown>
-              <textarea data-template>
+          <section data-markdown>
+            <textarea data-template>
                 ### What is Kubernetes?
                 - Open-source container management
                 - In Depth: [What is Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
-              </textarea>
-            </section>
-            <section data-markdown>
-              <textarea data-template>
+              </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template>
                 ### Why Kubernetes?
                 - Declarative
                 - Native load balancing
                 - Native service discovery
                 - Automated rollouts and rollbacks
                 - Self-healing
-              </textarea>
-            </section>
-            <section data-markdown>
-              <textarea data-template>
+              </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template>
                 ### What doesn't Kubernetes do?
                 - Doesn't provide services
                 - Doesn't deploy your app
                 - Doesn't build your app
-              </textarea>
-            </section>
+              </textarea
+            >
+          </section>
         </section>
+        <section data-markdown>
+          <textarea data-template>
+              ### Interacting with Kubernetes
+
+              - Kubectl
+              - Objects
+            </textarea
+          >
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Kubectl
+              <small>Full reference [here](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#scale).</small>
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Basic
+              - `apply`
+              - `delete`
+              - `get`
+              - `describe`
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Advanced
+              - `convert`
+              - `rollout`
+              - `exec`
+              - `port-forward`
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+          ### Kubernetes Objects
+          <small>Full reference [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-).</small>
+        </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Namespace
+
+              <h6 style="text-align: left;">Method 1</h6>
+
+              ```shell
+              kubectl create namespace my-namespace
+              ```
+
+              <h6 style="text-align: left;">Method 2</h6>
+              
+              ```yaml
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                name: my-namespace
+              ```
+            </textarea>
+          </section>
+        </section>
+      </div>
     </div>
-</div>
 
-<script src="js/reveal.js"></script>
+    <script src="js/reveal.js"></script>
 
-<script>
-    // More info about config & dependencies:
-    // - https://github.com/hakimel/reveal.js#configuration
-    // - https://github.com/hakimel/reveal.js#dependencies
-    Reveal.initialize({
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
         hash: true,
         dependencies: [
-            {src: "plugin/markdown/marked.js"},
-            {src: "plugin/markdown/markdown.js"},
-            {src: "plugin/highlight/highlight.js"},
-            {src: "plugin/notes/notes.js", async: true}
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/highlight/highlight.js" },
+          { src: "plugin/notes/notes.js", async: true }
         ]
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>
