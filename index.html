@@ -108,20 +108,93 @@
             <textarea data-template>
               ### Namespace
 
-              <h6 style="text-align: left;">Method 1</h6>
-
-              ```shell
-              kubectl create namespace my-namespace
-              ```
-
-              <h6 style="text-align: left;">Method 2</h6>
-              
               ```yaml
                 apiVersion: v1
                 kind: Namespace
                 metadata:
-                name: my-namespace
+                  name: my-presentation
               ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Deployment 
+              
+              ```yaml
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: k8s-presentation
+                namespace: my-presentation
+              spec:
+                replicas: 3
+                selector:
+                  matchLabels:
+                    app: k8s-presentation
+                template:
+                  metadata:
+                    labels:
+                      app: k8s-presentation
+                  spec:
+                    containers:
+                      - name: k8s-presentation
+                        image: k8s-presentation:v1
+                        imagePullPolicy: Never
+                        ports:
+                          - containerPort: 8000              
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Service
+
+              ```yaml
+              apiVersion: v1
+              kind: Service
+              metadata:
+                name: k8s-presentation
+                namespace: my-presentation
+              spec:
+                selector:
+                  app: k8s-presentation
+                ports:
+                  - port: 8000
+                    targetPort: 8000
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### ConfigMap
+
+              ```yaml
+              apiVersion: v1
+              kind: ConfigMap
+              metadata:
+                name: k8s-presentation
+                namespace: my-presentation
+              data:
+                a-param: "a param"
+                config-file.json: "{"fromConfigFile": true}"
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Secret
+
+              ```yaml
+              apiVersion: v1
+              data:
+                secret-password: UDQ2ODUydzByZA==
+              kind: Secret
+              metadata:
+                name: presentation-secret
+                namespace: my-presentation
+              ```
+
+              <small>I recommend __not__ storing secrets in source control.</small>
             </textarea>
           </section>
         </section>
