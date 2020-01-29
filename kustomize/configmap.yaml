@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: k8s-presentation
 data:
-  a-param: "A Parameter"
+  a-param: "Parameter A"

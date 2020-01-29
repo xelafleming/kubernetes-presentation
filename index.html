@@ -85,12 +85,14 @@
               - `delete`
               - `get`
               - `describe`
+              - `create`
+              - `logs`
             </textarea>
           </section>
           <section data-markdown>
             <textarea data-template>
               ### Advanced
-              - `convert`
+              - `proxy`
               - `rollout`
               - `exec`
               - `port-forward`
@@ -164,10 +166,10 @@
                      resources:
                       requests:
                        cpu: "100m"
-                       memory: "32Mi"
+                       memory: "128Mi"
                       limits:
                        cpu: "250m"
-                       memory: "64Mi"
+                       memory: "256Mi"
                       env:
                       - name: SECRET_PASSWORD
                         valueFrom:
@@ -213,15 +215,6 @@
                 namespace: my-presentation
               data:
                 a-param: "Parameter A"
-                another-slide.sh: |-
-                #!/bin/bash
-
-                echo "## A slide generated from a config map" >> another-slide.md
-                echo "- $POD_IDENTIFIER" >> another-slide.md
-                echo "- $A_PARAM" >> another-slide.md
-                echo "- $SECRET_PASSWORD" >> another-slide.md
-
-                cp ./another-slide.md ~/app/another-slide.md
               ```
             </textarea>
           </section>
@@ -240,7 +233,7 @@
               ```
               <small>Unless generating passwords:</small>
               <small>I recommend __not__ storing secrets in source control and __recommend__ using the `kubectl` secret creation.</small> 
-              <small>`kubectl create secret presentation-secret --from-literal=secret-password=P4$$w0rd`</small>
+              <small>`kubectl create secret generic presentation-secret --from-literal=secret-password=P4ssw0rd`</small>
             </textarea>
           </section>
         </section>
@@ -255,9 +248,9 @@
 
             ```yaml
             resources:
-            - namespace.yaml
-            - deployment.yaml
-            - service.yaml          
+            - configmap.yaml
+            - service.yaml
+            - deployment.yaml          
             ```
           </textarea>
         </section>
@@ -274,6 +267,7 @@
           </textarea>
         </section>
         <section data-markdown="another-slide.md"></section>
+        <section><h1>Demo</h1></section>
       </div>
     </div>
 
