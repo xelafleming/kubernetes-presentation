@@ -100,6 +100,8 @@
           <section data-markdown>
             <textarea data-template>
           ### Kubernetes Objects
+
+          Apply any of the objects using the `kubectl apply -f file-to-apply.yaml` command.
           <small>Full reference [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-).</small>
         </textarea
             >
@@ -226,7 +228,17 @@
           <textarea data-template>
             ### Kustomize
 
-            
+            - Easy way of applying multiple yamls at once
+            - Place your objects into a `kustomize` directory
+            - Create a `kustomize.yaml` in the diretcory like below
+            - Apply using `kubectl apply -k /path/to/kustomize/dir`
+
+            ```yaml
+            resources:
+            - namespace.yaml
+            - deployment.yaml
+            - service.yaml          
+            ```
           </textarea>
         </section>
         <section data-markdown="another-slide.md"></section>
