@@ -175,9 +175,15 @@
                 name: k8s-presentation
                 namespace: my-presentation
               data:
-                a-param: "a param"
-                another-slide.md: |-
-                ## A slide from a config map
+                a-param: "Parameter A"
+                another-slide.sh: |-
+                #!/bin/bash
+
+                echo "## A slide generated from a config map" >> another-slide.md
+                echo "- $POD_IDENTIFIER" >> another-slide.md
+                echo "- $A_PARAM" >> another-slide.md
+
+                cp ./another-slide.md ~/app/another-slide.md
               ```
             </textarea>
           </section>
@@ -198,6 +204,7 @@
             </textarea>
           </section>
         </section>
+        <section data-markdown="another-slide.md"></section>
       </div>
     </div>
 
