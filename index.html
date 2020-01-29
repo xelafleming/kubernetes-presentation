@@ -102,7 +102,10 @@
             <textarea data-template>
           ### Kubernetes Objects
 
-          Apply any of the objects using the `kubectl apply -f file-to-apply.yaml` command.
+          Apply any of the objects using the command:
+          <br/>
+          `kubectl apply -f file-to-apply.yaml`
+          <br/>
           <small>Full reference [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17).</small>
         </textarea
             >
@@ -127,39 +130,55 @@
               apiVersion: apps/v1
               kind: Deployment
               metadata:
-                name: k8s-presentation
-                namespace: my-presentation
+               name: k8s-presentation
+               namespace: my-presentation
               spec:
-                replicas: 3
-                selector:
-                  matchLabels:
-                    app: k8s-presentation
-                template:
-                  metadata:
-                    labels:
-                      app: k8s-presentation
-                  spec:
-                    containers:
-                      - name: k8s-presentation
-                        image: k8s-presentation:v1
-                        imagePullPolicy: Never
-                        ports:
-                          - containerPort: 8000
-                        livenessProbe:
-                          httpGet:
-                           path: /
-                           port: 8000
-                        readinessProbe:
-                          httpGet:
-                           path: /
-                           port: 8000
-                        resources:
-                          requests:
-                           cpu: "100m"
-                           memory: "32Mi"
-                          limits:
-                           cpu: "250m"
-                           memory: "64Mi"    
+               replicas: 3
+               selector:
+                 matchLabels:
+                   app: k8s-presentation
+               strategy:
+                 type: RollingUpdate
+                 rollingUpdate:
+                   maxSurge: 1
+                   maxUnavailable: 0
+               template:
+                 metadata:
+                   labels:
+                     app: k8s-presentation
+                 spec:
+                   containers:
+                   - name: k8s-presentation
+                     image: k8s-presentation:v1
+                     imagePullPolicy: Never
+                     ports:
+                     - containerPort: 8000
+                     livenessProbe:
+                      httpGet:
+                       path: /
+                       port: 8000
+                     readinessProbe:
+                      httpGet:
+                       path: /
+                       port: 8000
+                     resources:
+                      requests:
+                       cpu: "100m"
+                       memory: "32Mi"
+                      limits:
+                       cpu: "250m"
+                       memory: "64Mi"
+                      env:
+                      - name: SECRET_PASSWORD
+                        valueFrom:
+                         secretKeyRef:
+                          key: secret-password
+                          name: presentation-secret
+                      - name: A_PARAM
+                        valueFrom:
+                         configMapKeyRef:
+                          key: a-param
+                          name: k8s-presentation              
               ```
             </textarea>
           </section>

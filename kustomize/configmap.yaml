@@ -3,13 +3,4 @@ kind: ConfigMap
 metadata:
   name: k8s-presentation
 data:
-  a-param: A Parameter
-  another-slide.sh: |-
-    #!/bin/bash
-
-    echo "## A slide generated from a config map" >> another-slide.md
-    echo "- $POD_IDENTIFIER" >> another-slide.md
-    echo "- $A_PARAM" >> another-slide.md
-    echo "- $SECRET_PASSWORD" >> another-slide.md
-
-    mv ./another-slide.md ~/app/presentation/another-slide.md
+  a-param: "A Parameter"
