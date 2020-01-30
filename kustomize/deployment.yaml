@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: k8s-presentation
-          image: k8s-presentation:v2
+          image: k8s-presentation:v1
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
